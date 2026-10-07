@@ -41,6 +41,7 @@ import * as SkillFileSystem from '@deepseek-ai/dsh-skill-filesystem'
 import LocalJobRegistry from '@deepseek-ai/dsh-jobs-local'
 import * as ToolAskUser from '@deepseek-ai/dsh-tool-ask-user'
 import * as ToolBash from '@deepseek-ai/dsh-tool-bash'
+import * as ToolGreet from '@deepseek-ai/dsh-tool-greet'
 import * as ToolPwsh from '@deepseek-ai/dsh-tool-pwsh'
 import * as ToolBashPersistent from '@deepseek-ai/dsh-tool-bash-persistent'
 import * as ToolPwshPersistent from '@deepseek-ai/dsh-tool-pwsh-persistent'
@@ -311,6 +312,17 @@ const TOOL_PACKAGES: ToolPackage[] = [
       await ctx.plugin(ToolPresent)
     },
     note: 'Deliveries belong to the calling Session; Web ui-deliverables supplies source-file opening and cards.',
+  },
+  {
+    pkg: '@deepseek-ai/dsh-tool-greet',
+    dir: 'tool-greet',
+    source: 'packages/interaction/tool-greet/src/index.ts',
+    requires: ['ctx.tools'],
+    writes: ['tool/call', 'tool/result'],
+    async mount(ctx) {
+      await ctx.plugin(ToolGreet)
+    },
+    note: 'The dsh-base row is disabled by default; enable it only in a deployment that wants the minimal greeting capability.',
   },
   {
     pkg: '@deepseek-ai/dsh-tool-pwsh',

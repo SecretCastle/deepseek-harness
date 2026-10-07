@@ -451,6 +451,12 @@
         subagentProvider: spawn
         maxRounds: 64
 
+    # Minimal production tool example. It stays dormant because greetings add
+    # model-visible tokens without serving the default product workflow.
+    - id: tool-greet
+      name: '@deepseek-ai/dsh-tool-greet'
+      disabled: false
+
     # Consecutive-repeat reminders on the tool chain.
     - id: repeat-tool-reminder
       name: '@deepseek-ai/dsh-repeat-tool-reminder'
